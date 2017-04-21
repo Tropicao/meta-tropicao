@@ -1,0 +1,28 @@
+/*************************************************************
+******************* Meta Tropicao ****************************
+**************************************************************/
+
+Alexis Lothoré
+04/2017
+
+This meta can be used to generate firmwares for IoT protocols showcase. The
+prefered targets are Raspberry Pi with MRF24J40 modules connected via SPI.
+
+To use this layer :
+1. Clone the Yocto project
+2. Clone this meta in your Yocto directory
+4. Clone the necessary metas :
+    * meta-raspberry
+    * meta-intel-iot-middleware
+3. Modify your bbayers.conf to add the metas (raspberry, intel and tropicao)
+4. Ensure that all metas are on branch corresponding to the current yoto
+project version (krogoth, morty, etc)
+5. Modify your local.conf to set the target properties :
+    * DISTRO = "tropios"
+    * MACHINE = "raspberrypi"
+6. Build your images :
+    * bitbake border-router
+    * bitbake lowpan-node
+7. You can now deploy the generated images on SD Cards and boot on your
+freshly built distributions
+

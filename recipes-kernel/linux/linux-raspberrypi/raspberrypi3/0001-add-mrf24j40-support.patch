@@ -1,0 +1,42 @@
+From 33bfa7e9e2988ac0e6d1109ccda1b67834b971fc Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Alexis=20Lothor=C3=A9?= <alexis.lothore@gmail.com>
+Date: Tue, 28 Mar 2017 23:36:36 +0200
+Subject: [PATCH] add mrf24j40 support
+
+---
+ arch/arm/boot/dts/bcm2710-rpi-3-b.dts | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+
+diff --git a/arch/arm/boot/dts/bcm2710-rpi-3-b.dts b/arch/arm/boot/dts/bcm2710-rpi-3-b.dts
+index 98352b5..15d987b 100644
+--- a/arch/arm/boot/dts/bcm2710-rpi-3-b.dts
++++ b/arch/arm/boot/dts/bcm2710-rpi-3-b.dts
+@@ -115,7 +115,17 @@
+ 	pinctrl-0 = <&spi0_pins &spi0_cs_pins>;
+ 	cs-gpios = <&gpio 8 1>, <&gpio 7 1>;
+ 
++	mrf24j40@0{
++		status = "okay";
++		compatible = "mrf24j40";
++		spi-max-frequency = "5000000";
++		reg = <1>;
++		interrupts = <23 8>;
++		interrupt-parent = <&gpio>;
++	};
++
+ 	spidev0: spidev@0{
++		status = "disabled";
+ 		compatible = "spidev";
+ 		reg = <0>;	/* CE0 */
+ 		#address-cells = <1>;
+@@ -124,6 +134,7 @@
+ 	};
+ 
+ 	spidev1: spidev@1{
++		status = "disabled";
+ 		compatible = "spidev";
+ 		reg = <1>;	/* CE1 */
+ 		#address-cells = <1>;
+-- 
+2.1.4
+
